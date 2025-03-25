@@ -16,12 +16,7 @@ export default function ImagePicker({ label, name }) {
       return;
     }
 
-    const fileReader = new FileReader();
-
-    fileReader.onload = () => {
-      setPickedImage(fileReader.result);
-    };
-    fileReader.readAsDataURL(file);
+    setPickedImage(file);
   };
 
   return (
@@ -31,7 +26,11 @@ export default function ImagePicker({ label, name }) {
         <div className={classes.preview}>
           {!pickedImage && <p>No image picked yet.</p>}
           {pickedImage && (
-            <Image src={pickedImage} alt="Image selected by user." fill />
+            <Image
+              src={URL.createObjectURL(pickedImage)}
+              alt="Image selected by user."
+              fill
+            />
           )}
         </div>
         <input
