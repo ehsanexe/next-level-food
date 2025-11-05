@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
+import { revalidatePath } from "next/cache";
 
 const validateText = (text) => {
   if (!text || text.trim().length === 0) {
@@ -36,5 +37,6 @@ export const shareMeal = async (prevState, formData) => {
   }
 
   await saveMeal(meal);
+  revalidatePath("/meals"); // clear the cache for /meals page
   redirect("/meals");
 };
