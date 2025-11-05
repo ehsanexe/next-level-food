@@ -4,6 +4,11 @@ import Link from "next/link";
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "../lib/meals";
 
+export const metadata = {
+  title: "Browse Meals",
+  description: "Explore delicious meals shared by our food-loving community.",
+}
+
 export default async function Meals() {
   return (
     <>

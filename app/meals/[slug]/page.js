@@ -4,6 +4,19 @@ import Image from "next/image";
 import { getMeal } from "@/app/lib/meals";
 import { notFound } from "next/navigation";
 
+export const generateMetadata = ({ params }) => {
+  const meal = getMeal(params.slug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+};
+
 export default function MealDetail({ params }) {
   const meal = getMeal(params.slug);
 
