@@ -10,7 +10,7 @@ const validateText = (text) => {
   return true;
 };
 
-export const shareMeal = async (formData) => {
+export const shareMeal = async (prevState, formData) => {
   const meal = {
     creator: formData.get("name"),
     creator_email: formData.get("email"),
@@ -30,7 +30,9 @@ export const shareMeal = async (formData) => {
     !meal.image ||
     meal.image.size === 0
   ) {
-    throw new Error("Invalid input ");
+    return {
+      message: "Invalid input - please check your data.",
+    };
   }
 
   await saveMeal(meal);
